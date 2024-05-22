@@ -51,7 +51,15 @@ public class BookService {
             oldBook.setDescription(book.getDescription());
             return Optional.of(oldBook);
         }
-
+    }
+    public Boolean delete(Integer id){
+        Optional<BookEntity> bookEntityOptional = byId(id);
+        if (bookEntityOptional.isEmpty()) {
+            return false;
+        } else {
+            bookStorage.remove(bookEntityOptional.get());
+            return true;
+        }
 
     }
 }
